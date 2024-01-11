@@ -1,0 +1,34 @@
+{
+  "name": "@arandu/lmaplugin-draft-js-input",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^18.2.47",
+    "@types/react-draft-wysiwyg": "^1.13.8",
+    "@types/draftjs-to-html": "^0.8.4",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "@arandu/laravel-mui-admin": "^0.5.6",
+    "@draft-js-plugins/editor": "^4.1.4",
+    "@draft-js-plugins/image": "^4.1.4",
+    "@draft-js-plugins/static-toolbar": "^4.1.4",
+    "@draft-js-plugins/text-alignment": "^2.0.1",
+    "@mui/material": "^5.15.4",
+    "draft-js": "^0.11.7",
+    "draftjs-to-html": "^0.9.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-draft-wysiwyg": "^1.15.0"
+  },
+  "dependencies": {}
+}
