@@ -4,9 +4,9 @@
 ## Instalação
 
 ```
-npm i // todas as dependencias @...
+npm i @draft-js-plugins/editor @draft-js-plugins/image @draft-js-plugins/static-toolbar @draft-js-plugins/text-alignment draft-js draftjs-to-html react-draft-wysiwyg
 
-npm i @arandu/lmaplugin-draft-js-input
+npm i @arandu/lmaplugin-draft-js-input 
 ```
 
  
