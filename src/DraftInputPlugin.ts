@@ -1,8 +1,11 @@
 import { LaravelMuiAdminPlugin } from '@arandu/laravel-mui-admin/lib/types/plugin';
 
-import { addFilter } from '@arandu/laravel-mui-admin';
+import { addFilter, config } from '@arandu/laravel-mui-admin';
 
 import EditorField from './components/EditorField';
+import { ModelSchema } from '@arandu/laravel-mui-admin/lib/types/model';
+import { FormState, UseFormOptions } from '@arandu/laravel-mui-admin/lib/types/form';
+import { dotSetter } from '@arandu/laravel-mui-admin/lib/support/object';
 
 const DraftInputPlugin: LaravelMuiAdminPlugin = {
 
@@ -18,6 +21,60 @@ const DraftInputPlugin: LaravelMuiAdminPlugin = {
                 };
             }
         );
+
+        // Find all 'draft' fields in models and add filters to them
+
+        const modelsSchema: ModelSchema = config('boot.models');
+
+        Object.entries(modelsSchema).forEach(([className, schema]) => {
+                
+            if (!schema.fields) {
+                return;
+            }
+
+            Object.entries(schema.fields).forEach(([schema, fields]) => {
+
+                if (fields.some((field) => field.type && ['draft'].includes(field.type))) {
+                    addFilter(
+                        `model_form_options_${className}_${schema}`,
+                        (options: UseFormOptions) => {
+                            return {
+                                ...options,
+                                transformPayload: (payload: FormState) => {
+                                    const newPayload = structuredClone(
+                                        typeof options.transformPayload === 'function'
+                                            ? options.transformPayload(payload)
+                                            : payload
+                                    );
+                                    // dotSetter(newPayload, field.name, JSON.stringify(newPayload[field.name]));
+                                    fields.forEach((field) => {
+                                        if (field.type && ['draft'].includes(field.type)) {
+                                            dotSetter(newPayload, field.name, JSON.stringify(payload[field.name]));
+                                        }
+                                    });
+
+                                    return newPayload;
+                                },
+                            };
+                        }
+                    );
+
+                }
+
+                fields.forEach((field) => {
+
+
+                    if (field.type && ['draft'].includes(field.type)) {
+
+                        
+                        
+                    }
+
+                });
+
+            });
+
+        });
 
 
     },
