@@ -37,7 +37,7 @@ const Fieldset = styled(
     overflow: 'hidden',
     borderRadius: theme.shape.borderRadius,
     '&.focused': {
-        borderColor: theme.palette[color as keyof Palette].main,
+        borderColor: (theme.palette[color as keyof Palette] as PaletteColor).main,
         borderWidth: 2,
     },
     '& > legend': {
