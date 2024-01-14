@@ -18,7 +18,7 @@
     "typescript": "^5.3.3"
   },
   "peerDependencies": {
-    "@arandu/laravel-mui-admin": "^0.6.0-alpha.3",
+    "@arandu/laravel-mui-admin": "^0.6.0-alpha.12",
     "@draft-js-plugins/editor": "^4.1.4",
     "@draft-js-plugins/image": "^4.1.4",
     "@draft-js-plugins/static-toolbar": "^4.1.4",
