@@ -37,43 +37,27 @@ const DraftInputPlugin: LaravelMuiAdminPlugin = {
                 if (fields.some((field) => field.type && ['draft'].includes(field.type))) {
                     addFilter(
                         `model_form_options_${className}_${schema}`,
-                        (options: UseFormOptions) => {
-                            return {
-                                ...options,
-                                transformPayload: (payload: FormState) => {
-                                    const newPayload = structuredClone(
-                                        typeof options.transformPayload === 'function'
-                                            ? options.transformPayload(payload)
-                                            : payload
-                                    );
-                                    // dotSetter(newPayload, field.name, JSON.stringify(newPayload[field.name]));
-                                    fields.forEach((field) => {
-                                        if (field.type && ['draft'].includes(field.type)) {
-                                            dotSetter(newPayload, field.name, JSON.stringify(payload[field.name]));
-                                        }
-                                    });
+                        (options: UseFormOptions) =>  ({
+                            ...options,
+                            transformPayload: (payload: FormState) => {
+                                const newPayload = structuredClone(
+                                    typeof options.transformPayload === 'function'
+                                        ? options.transformPayload(payload)
+                                        : payload
+                                );
+                                // dotSetter(newPayload, field.name, JSON.stringify(newPayload[field.name]));
+                                fields.forEach((field) => {
+                                    if (field.type && ['draft'].includes(field.type)) {
+                                        dotSetter(newPayload, field.name, JSON.stringify(payload[field.name]));
+                                    }
+                                });
 
-                                    return newPayload;
-                                },
-                            };
-                        }
+                                return newPayload;
+                            },
+                        })
                     );
-
                 }
-
-                fields.forEach((field) => {
-
-
-                    if (field.type && ['draft'].includes(field.type)) {
-
-                        
-                        
-                    }
-
-                });
-
             });
-
         });
 
 
