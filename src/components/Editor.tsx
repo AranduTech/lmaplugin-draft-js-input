@@ -8,10 +8,10 @@
 /* eslint-disable require-jsdoc */
 import React, { Component } from 'react';
 import { EditorState as BaseEditorState, convertFromRaw, DraftModel } from 'draft-js';
-import { Editor as BaseEditor } from 'react-draft-wysiwyg';
+import { Editor as BaseEditor, EditorProps as BaseEditorProps } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-type EditorProps = {
+type EditorProps = BaseEditorProps & {
     onContentChange: (value: BaseEditorState) => void;
     value: DraftModel.Encoding.RawDraftContentState;
 };
@@ -45,6 +45,8 @@ export default class Editor extends Component<EditorProps, EditorState> {
     render() {
         const { editorState } = this.state;
 
+        const { value, onContentChange, ...props } = this.props;
+
         return (
             <>
                 <BaseEditor
@@ -55,6 +57,7 @@ export default class Editor extends Component<EditorProps, EditorState> {
                             'inline', 'list', 'textAlign', 'link', 'history',
                         ]),
                     }}
+                    {...props}
                 />
             </>
         );

@@ -45,7 +45,7 @@ const DraftInputPlugin: LaravelMuiAdminPlugin = {
                                         ? options.transformPayload(payload)
                                         : payload
                                 );
-                                // dotSetter(newPayload, field.name, JSON.stringify(newPayload[field.name]));
+
                                 fields.forEach((field) => {
                                     if (field.type && ['draft'].includes(field.type)) {
                                         dotSetter(newPayload, field.name, JSON.stringify(payload[field.name]));
