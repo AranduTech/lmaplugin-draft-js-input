@@ -11,7 +11,7 @@ import MuiFormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import InputLabel from '@mui/material/InputLabel';
 
-import styled from '@mui/system/styled';
+import { styled } from '@mui/material/styles';
 
 import Editor from './Editor';
 import { Palette, PaletteColor, useTheme } from '@mui/material';
